@@ -2,9 +2,9 @@ const { join } = require('path')
 exports.config = {
     //
     // ====================
-    // Runner Configuration
+    // Configura o do Execut vel
     // ====================
-    // WebdriverIO supports running e2e tests as well as unit and component tests.
+    // O WebdriverIO suporta a execu o de testes de ponta a ponta, bem como testes de unidade e componentes.
     runner: 'local',
 
     hostname: 'localhost',

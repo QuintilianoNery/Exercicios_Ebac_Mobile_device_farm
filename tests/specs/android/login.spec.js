@@ -40,7 +40,7 @@ describe('Login', () => {
         await $(element.myStoreHomePage.navigationButtons).isDisplayed()
 
         //Logout sucessfully
-        await $(element.myStoreHomePage.btnMenu).isDisplayed()
+        await $(element.myStoreHomePage.btnMenu).isDisplayed({ timeout: 30000 })
         await $(element.myStoreHomePage.btnMenu).click()
         await $(element.menu.btnConfiguration).click()
         await $(element.menu.configuration.btnLogout).click()
