@@ -1,6 +1,7 @@
 const { loadElements, loadFixtures, loadAssertions } = require("../../functions/loadFunctions.js");
 const { checkElementAndVisibleText } = require("../../functions/common.js");
 const { expect } = require('@wdio/globals');
+const { logout } = require("../../functions/common.js");
 
 
 // Global variables
@@ -11,8 +12,15 @@ const assertion = loadAssertions()
 
 //deveria verificar os elementos o que acontece antes de preencher os campos, onde estão desabilitados
 //Deveria validar elementos importantes da tela
+
+afterEach(async () => {
+    await driver.pause(5000)
+})
+
 describe('Login', () => {
-    it('Realizar login no painel de administrador', async () => {
+
+    it('Realizar login com credencial válidaccc', async () => {
+        //Realizar login com credencial válida
         if (await $(element.home.btnSkip).isDisplayed()) {
             await $(element.home.btnSkip).click()
         }
@@ -38,15 +46,12 @@ describe('Login', () => {
         await $(element.myStoreHomePage.subTitleMyStoreHomePage).isDisplayed()
         await $(element.myStoreHomePage.myStoreStats).isDisplayed()
         await $(element.myStoreHomePage.navigationButtons).isDisplayed()
-
         //Logout sucessfully
-        await $(element.myStoreHomePage.btnMenu).isDisplayed({ timeout: 30000 })
-        await $(element.myStoreHomePage.btnMenu).click()
-        await $(element.menu.btnConfiguration).click()
-        await $(element.menu.configuration.btnLogout).click()
-        await $(element.menu.configuration.btnConformLogout).isDisplayed()
-        await $(element.menu.configuration.btnConformLogout).click()
-
-        await $(element.home.btnLoginStore).isDisplayed({ timeout: 30000 })
+        await logout(
+            element.myStoreHomePage.btnMenu,
+            element.menu.btnConfiguration,
+            element.menu.configuration.btnLogout,
+            element.menu.configuration.btnConformLogout,
+            element.home.btnLoginStore)
     });
 });
